@@ -1,0 +1,73 @@
+<%- include("partials/_header") %>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-4">
+          <h2>Formulario</h2>
+          <form method="POST" action="/add">
+            <div class="form-group">
+              <label for="name">Nombre:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                placeholder="Ingrese su nombre"
+              />
+            </div>
+            <div class="form-group">
+              <label for="address">Dirección:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="address"
+                name="address"
+                placeholder="Ingrese su dirección"
+              />
+            </div>
+            <div class="form-group">
+              <label for="phone">Teléfono:</label>
+              <input
+                type="tel"
+                class="form-control"
+                id="phone"
+                name="phone"
+                placeholder="Ingrese su teléfono"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+          </form>
+        </div>
+        <div class="col-md-8">
+      <h2>Tabla de Usuarios</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Registros</th>
+            <th>Nombre</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if(data) { %> <% for(var i = 0; i < data.length; i++){ %>
+          <tr>
+            <td><%= (i + 1) %></td>
+            <td><%= data[i].name %></td>
+            <td><%= data[i].address %></td>
+            <td><%= data[i].phone %></td>
+            <td>
+                <div class="d-flex justify-content-between gap-3">
+                    <a href="/update/<%= data[i].id%>" class="btn btn-primary">Editar</a>
+                    <a href="/delete/<%= data[i].id %>" class="btn btn-danger">Eliminar</a>
+                </div>
+            </td>
+          </tr>
+          <%}%> <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/_footer") %>
